@@ -59,7 +59,7 @@ function convertCurrency(req, res) {
 
 
   // ACTION: include your own API Key
-  var api_key = "1d58ec9e6f9b90e87baab8bcd8c1021c";
+  var api_key = "b878841496555147e991419e461be9a5";
 
   // http://data.fixer.io/api/latest?access_key=1d58ec9e6f9b90e87baab8bcd8c1021c&base=EUR&symbols=SGD,EUR
   var url = `http://data.fixer.io/api/latest?access_key=${api_key}&base=EUR&symbols=${fromC},${toC}`;
