@@ -17,7 +17,7 @@ const hostname = 'localhost';
 const port = 3000;
 
 // ACTION: include your own API Key
-const apikey = "0d696bd7c821447dc21fa638a5f6344f";
+const apikey = "9a09a4df68a76ec2c124f1996ec7da83";
 
 //------------------------------------------------------
 // standard functions
