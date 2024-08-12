@@ -1,0 +1,67 @@
+# ------------------------------------------------------------
+# imports
+# ------------------------------------------------------------
+import re
+
+# ------------------------------------------------------------
+# config
+# ------------------------------------------------------------
+# Define a dictionary of patterns
+patterns = {}
+
+# intents dictionary
+keywords = {
+    "greet": ["hello", "hi", "hey"],
+    "goodbye": ["bye", "farewell"],
+    "thankyou": ["thank", "thx"],
+}
+
+# Iterate over the keywords dictionary
+for intent, keys in keywords.items():
+    # Create regular expressions and compile them into pattern objects
+    patterns[intent] = re.compile("|".join(keys))
+
+
+responses = {
+    "greet": "Hello you! :)",
+    "goodbye": "goodbye for now",
+    "thankyou": "you are very welcome",
+    "default": "default message",
+}
+
+# ------------------------------------------------------------
+# functions
+# ------------------------------------------------------------
+# Define a function to find the intent of a message
+def match_intent(message):
+    matched_intent = None
+
+    for intent, pattern in patterns.items():
+        # Check if the pattern occurs in the message
+        if re.search(pattern, message):
+            matched_intent = intent
+
+    return matched_intent
+
+
+# Define a respond function
+def respond(message):
+    # Call the match_intent function
+    intent = match_intent(message)
+
+    # Fall back to the default response
+    key = "default"
+
+    if intent in responses:
+        key = intent
+
+    return responses[key]
+
+
+# ------------------------------------------------------------
+# main
+# ------------------------------------------------------------
+
+print(respond("hello!"))
+print(respond("bye byeee"))
+print(respond("thanks very much!"))
