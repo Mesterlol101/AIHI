@@ -1,0 +1,61 @@
+version: '3.1'
+intents:
+- affirm
+- bot_challenge
+- deny
+- get_tea
+- goodbye
+- greet
+- inform_email
+- inform_phone
+- mood_great
+- mood_unhappy
+- out_of_scope
+- subscribe
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_email:
+  - text: What is your email address?
+  utter_ask_phone:
+  - text: What is your mobile number?
+  utter_subscribed:
+  - text: You're all set! Check your inbox at {email} and mobile at {phone} to confirm your subscription.
+  utter_out_of_scope:
+  - text: Sorry, I didn't get what you said. Could you please rephrase it?
+slots:
+  email:
+    type: text
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: newsletter_form
+        requested_slot: email
+  phone:
+    type: text
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: newsletter_form
+        requested_slot: phone
+forms:
+  newsletter_form:
+    required_slots:
+    - email
+    - phone
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+actions:
+- utter_subscribed
